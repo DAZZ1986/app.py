@@ -1,14 +1,13 @@
 pipeline {
-	agent any
+	agent { label 'built-in' } // Используем основной узел Jenkins
 
-	environment {
+    environment {
 		// Имя вашего Docker-образа
-		DOCKER_IMAGE = "my-pet-app:${BUILD_ID}"
+        DOCKER_IMAGE = "my-pet-app:${BUILD_ID}"
 		// Имя вашего k8s деплоймента
-		DEPLOYMENT_NAME = "my-pet-app-deployment"
-		// Имя сервиса
-		SERVICE_NAME = "my-pet-app-service"
-	}
+        DEPLOYMENT_NAME = "my-pet-app"
+    }
+	
 
 	stages {
 		stage('Checkout') {
